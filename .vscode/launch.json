@@ -1,0 +1,29 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch libft",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/Users/negarnasiri/Downloads/libft/libft/a.out",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "/Users/negarnasiri/Documents/practice/libft",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb"
+        },
+        {
+            "name": "(lldb) Launch get_next_line",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/Users/negarnasiri/Documents/practice/get_next_line/a.out",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "/Users/negarnasiri/Documents/practice/get_next_line",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb"
+        }
+    ]
+}
