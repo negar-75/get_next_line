@@ -1,4 +1,10 @@
 #include "get_next_line_bonus.h"
+static void free_memory(char **stash)
+{
+	free(*stash);
+	*stash = NULL;
+}
+
 static int read_from_content(int fd, char **stash, char *buffer)
 {
     char *tmp;
@@ -27,24 +33,20 @@ static void	remove_result(char **stash)
 	nl = ft_strchr(*stash, '\n');
 	if (!nl)
 	{
-		free(*stash);
-		*stash = NULL;
+		free_memory(stash);
 		return ;
 	}
 	tmp = malloc((ft_strlen(nl)) * sizeof(char));
 	if(!tmp)
 	{
-		free(*stash);
-		*stash = NULL;
+		free_memory(stash);
+		return ;
 	}
 	ft_strcpy(tmp,nl+1);
 	free(*stash);
 	*stash = tmp;
-	if (**stash == 0)
-	{
-		free(*stash);
-		*stash = NULL;
-	}
+	if (**stash == '\0')
+		free_memory(stash);
 }
 
 static void get_result(char **stash, char **result)
@@ -58,17 +60,16 @@ static void get_result(char **stash, char **result)
 		(*result) = malloc(sizeof(char) * (i + 2));
 	if ((*stash)[i] == '\0')
 		(*result) = malloc(sizeof(char) * (i + 1));
-	i = 0;
-    while ((*stash)[i] != '\n' && (*stash)[i] != '\0')
+	if (*result == NULL) 
     {
-        (*result)[i] = (*stash)[i];
-        i++;
+        free_memory(stash);
+        return; 
     }
+	i = -1;
+    while ((*stash)[++i] != '\n' && (*stash)[i] != '\0')
+    	(*result)[i] = (*stash)[i];
 	if ((*stash)[i] == '\n')
-	{
-		(*result)[i] = '\n';
-		i++;
-	}
+		(*result)[i++] = '\n';
 	(*result)[i] = '\0';
 }
 char *get_next_line(int fd)

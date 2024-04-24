@@ -1,50 +1,53 @@
 #include "get_next_line_bonus.h"
 
-size_t	ft_strlen(char *afll)
+size_t	ft_strlen(char *str)
 {
 	size_t	i;
 
 	i = 0;
-	if (afll == NULL)
+	if (str == NULL)
 		return (0);
-	while (afll[i] != '\0')
+	while (str[i] != '\0')
 		i++;
 	return (i);
 }
 
-char	*ft_strjoin(char *fp, char *tba)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*arr;
 	int		i;
 
 	i = 0;
-	arr = malloc(sizeof(char) * (ft_strlen(fp)
-				+ ft_strlen(tba) + 1));
+	arr = malloc(sizeof(char) * (ft_strlen(s1)
+				+ ft_strlen(s2) + 1));
 	if (!arr)
 		return (NULL);
-	while (fp && fp[i])
+	while (s1 && s1[i])
 	{
-		arr[i] = fp[i];
+		arr[i] = s1[i];
 		i++;
 	}
-	while (tba && *tba)
-		arr[i++] = *tba++;
+	while (s2 && *s2)
+		arr[i++] = *s2++;
 	arr[i] = '\0';
-	free(fp);
+	free(s1);
 	return (arr);
 }
 char	*ft_strchr(const char *s, int c)
 {
+	char	*ptr;
+
 	if (s == NULL)
 		return (NULL);
-	while (*s != '\0')
+	ptr = (char *)s;
+	while (*ptr)
 	{
-		if (*s == c)
-			return ((char *)s);
-		s++;
+		if (*ptr == (unsigned char)c)
+			return (ptr);
+		ptr++;
 	}
-	if (*s == '\0' && c == '\0')
-		return ((char *)s);
+	if ((unsigned char)c == '\0')
+		return (ptr);
 	return (NULL);
 }
 char* ft_strcpy(char *dest, char *src) {

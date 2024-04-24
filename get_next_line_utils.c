@@ -14,42 +14,41 @@ size_t	ft_strlen(char *str)
 
 char	*ft_strchr(const char *s, int c)
 {
+	char	*ptr;
+
 	if (s == NULL)
 		return (NULL);
-	while (*s != '\0')
+	ptr = (char *)s;
+	while (*ptr)
 	{
-		if (*s == c)
-			return ((char *)s);
-		s++;
+		if (*ptr == (unsigned char)c)
+			return (ptr);
+		ptr++;
 	}
-	if (*s == '\0' && c == '\0')
-		return ((char *)s);
+	if ((unsigned char)c == '\0')
+		return (ptr);
 	return (NULL);
 }
 
 char	*ft_strjoin(char *s1, char *s2)
 {
-	char	*str;
-	size_t	len;
-	size_t	i;
+	char	*arr;
+	int		i;
 
-	len = ft_strlen(s1) + ft_strlen(s2) + 1;
-	str = (char *)malloc(len * sizeof(char));
-	if (!str)
-		return (NULL);
 	i = 0;
-	while (s1 && *s1)
+	arr = malloc(sizeof(char) * (ft_strlen(s1)
+				+ ft_strlen(s2) + 1));
+	if (!arr)
+		return (NULL);
+	while (s1 && s1[i])
 	{
-		str[i++] = *s1;
-		s1++;
+		arr[i] = s1[i];
+		i++;
 	}
 	while (s2 && *s2)
-	{
-		str[i++] = *s2;
-		s2++;
-	}
-	str[i] = '\0';
-	return (str);
+		arr[i++] = *s2++;
+	arr[i] = '\0';
+	return (arr);
 }
 
 void	ft_bzero(void *s, size_t n)
@@ -64,16 +63,18 @@ void	ft_bzero(void *s, size_t n)
 	}
 }
 
-char* ft_strcpy(char *dest, char *src) {
-    int i = 0;
+char*	ft_strcpy(char *dest, char *src) 
+{
+    int i;
 
-    if (!dest || !src)
-        return NULL;
-
-    while (src[i] != '\0') {
-        dest[i] = src[i];
-        i++;
-    }
-    dest[i] = '\0';
-    return dest;
+	i = 0;
+	if (!dest || !src)
+		return NULL;
+	while (src[i] != '\0')
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }

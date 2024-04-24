@@ -1,16 +1,10 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jotavare <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/18 00:41:35 by jotavare          #+#    #+#             */
-/*   Updated: 2022/12/18 00:41:44 by jotavare         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "get_next_line.h"
+
+static void free_memory(char **stash)
+{
+	free(*stash);
+	*stash = NULL;
+}
 
 static int	read_from_content(int fd, char **stash, char *buffer)
 {
@@ -20,15 +14,17 @@ static int	read_from_content(int fd, char **stash, char *buffer)
     bytes = read(fd, buffer, BUFFER_SIZE);
 	if (bytes < 0 || buffer == NULL)
 	{
-		free(*stash);
-		*stash = NULL;
+		free_memory(stash);
 		return (-1);
 	}
 	if (bytes == 0)
 		return (bytes);
 	buffer[bytes] = '\0';
 	tmp = ft_strjoin(*stash, buffer);
-	free(*stash);
+	if (*stash)
+	{
+		free(*stash);
+	}
 	*stash = tmp;
 	return (bytes);
 }
@@ -43,24 +39,20 @@ static void	remove_result(char **stash)
 	nl = ft_strchr(*stash, '\n');
 	if (!nl)
 	{
-		free(*stash);
-		*stash = NULL;
+		free_memory(stash);
 		return ;
 	}
 	tmp = malloc((ft_strlen(nl)) * sizeof(char));
 	if(!tmp)
 	{
-		free(*stash);
-		*stash = NULL;
+		free_memory(stash);
+		return ;
 	}
 	ft_strcpy(tmp,nl+1);
 	free(*stash);
 	*stash = tmp;
-	if (**stash == 0)
-	{
-		free(*stash);
-		*stash = NULL;
-	}
+	if (**stash == '\0')
+		free_memory(stash);
 }
 
 static void get_result(char **stash, char **result)
@@ -74,17 +66,16 @@ static void get_result(char **stash, char **result)
 		(*result) = malloc(sizeof(char) * (i + 2));
 	if ((*stash)[i] == '\0')
 		(*result) = malloc(sizeof(char) * (i + 1));
-	i = 0;
-    while ((*stash)[i] != '\n' && (*stash)[i] != '\0')
+	if (*result == NULL) 
     {
-        (*result)[i] = (*stash)[i];
-        i++;
+        free_memory(stash);
+        return; 
     }
+	i = -1;
+    while ((*stash)[++i] != '\n' && (*stash)[i] != '\0')
+    	(*result)[i] = (*stash)[i];
 	if ((*stash)[i] == '\n')
-	{
-		(*result)[i] = '\n';
-		i++;
-	}
+		(*result)[i++] = '\n';
 	(*result)[i] = '\0';
 }
 
@@ -103,9 +94,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	bytes = 1;
 	while (ft_strchr(stash, '\n') == NULL && bytes > 0)
-	{
 		bytes = read_from_content(fd, &stash, buffer);
-	}
 	free(buffer);
 	if (bytes == -1)
 		return (NULL);
@@ -123,7 +112,7 @@ char	*get_next_line(int fd)
 // {
 //   char *line;
 
-//   int fd = open("big_line_no_nl", O_RDONLY);
+//   int fd = open("multiple_nl.txt", O_RDONLY);
 //   if (fd == -1)
 //   {
 //     perror("Error opening file");
@@ -132,7 +121,7 @@ char	*get_next_line(int fd)
 //   line = get_next_line(fd);
 //   while (line != NULL)
 //   {
-//     printf("%s", line);
+// 	printf("%s",line);
 //     free(line);
 //     line = get_next_line(fd);
 //   }

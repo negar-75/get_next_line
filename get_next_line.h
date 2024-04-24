@@ -8,7 +8,7 @@
 
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 10
 # endif
 
 void	ft_bzero(void *s, size_t n);

@@ -2,6 +2,19 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Launch printf",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/Users/negarnasiri/Documents/practice/ft_printf/a.out",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "/Users/negarnasiri/Documents/practice/ft_printf",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb"
+        },
+        
+        {
             "name": "Launch libft",
             "type": "cppdbg",
             "request": "launch",
@@ -14,7 +27,7 @@
             "MIMode": "lldb"
         },
         {
-            "name": "(lldb) Launch get_next_line",
+            "name": "Launch get_next_line",
             "type": "cppdbg",
             "request": "launch",
             "program": "/Users/negarnasiri/Documents/practice/get_next_line/a.out",
