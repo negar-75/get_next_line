@@ -6,7 +6,7 @@
 /*   By: nnasiri <nnasiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 14:17:46 by nnasiri           #+#    #+#             */
-/*   Updated: 2024/04/24 15:17:40 by nnasiri          ###   ########.fr       */
+/*   Updated: 2024/04/24 16:28:39 by nnasiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,9 @@ static int	read_from_content(int fd, char **stash, char *buffer)
 		return (bytes);
 	buffer[bytes] = '\0';
 	tmp = ft_strjoin(*stash, buffer);
-	if (*stash || !tmp)
-	{
+	
+	if (*stash)
 		free(*stash);
-	}
 	*stash = tmp;
 	return (bytes);
 }
