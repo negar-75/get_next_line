@@ -42,7 +42,7 @@ static void	remove_result(char **stash)
 		free_memory(stash);
 		return ;
 	}
-	tmp = malloc((ft_strlen(nl)) * sizeof(char));
+	tmp = malloc((ft_strlen(nl) + 1) * sizeof(char));
 	if(!tmp)
 	{
 		free_memory(stash);
