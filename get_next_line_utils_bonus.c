@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nnasiri <nnasiri@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/24 14:18:19 by nnasiri           #+#    #+#             */
+/*   Updated: 2024/04/24 15:24:15 by nnasiri          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line_bonus.h"
 
 size_t	ft_strlen(char *str)
@@ -18,8 +30,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	int		i;
 
 	i = 0;
-	arr = malloc(sizeof(char) * (ft_strlen(s1)
-				+ ft_strlen(s2) + 1));
+	arr = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!arr)
 		return (NULL);
 	while (s1 && s1[i])
@@ -33,6 +44,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	free(s1);
 	return (arr);
 }
+
 char	*ft_strchr(const char *s, int c)
 {
 	char	*ptr;
@@ -50,16 +62,19 @@ char	*ft_strchr(const char *s, int c)
 		return (ptr);
 	return (NULL);
 }
-char* ft_strcpy(char *dest, char *src) {
-    int i = 0;
 
-    if (!dest || !src)
-        return NULL;
+char	*ft_strcpy(char *dest, char *src)
+{
+	int	i;
 
-    while (src[i] != '\0') {
-        dest[i] = src[i];
-        i++;
-    }
-    dest[i] = '\0';
-    return dest;
+	i = 0;
+	if (!dest || !src)
+		return (NULL);
+	while (src[i] != '\0')
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }
