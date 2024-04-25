@@ -92,18 +92,14 @@ char	*get_next_line(int fd)
 {
 	static char	*stash;
 	char		*result;
-	char		*buffer;
+	char		buffer[BUFFER_SIZE + 1];
 	int			bytes;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!buffer)
-		return (NULL);
 	bytes = 1;
 	while (ft_strchr(stash, '\n') == NULL && bytes > 0)
 		bytes = read_from_content(fd, &stash, buffer);
-	free(buffer);
 	if (bytes == -1)
 		return (NULL);
 	if (ft_strlen(stash) != 0)

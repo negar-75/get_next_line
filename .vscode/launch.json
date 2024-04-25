@@ -27,13 +27,13 @@
             "MIMode": "lldb"
         },
         {
-            "name": "Launch get_next_line",
+            "name": "Launch get_next_line_v2",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/Users/negarnasiri/Documents/practice/get_next_line/a.out",
+            "program": "/Users/negarnasiri/Documents/practice/get_next_line_v2/a.out",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "/Users/negarnasiri/Documents/practice/get_next_line",
+            "cwd": "/Users/negarnasiri/Documents/practice/get_next_line_v2",
             "environment": [],
             "externalConsole": false,
             "MIMode": "lldb"

@@ -89,19 +89,15 @@ static void	get_result(char **stash, char **result)
 char	*get_next_line(int fd)
 {
 	char		*result;
-	char		*buffer;
+	char		buffer[BUFFER_SIZE + 1];
 	static char	*stashes[1024];
 	int			bytes;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!buffer)
-		return (NULL);
 	bytes = 1;
 	while (ft_strchr(stashes[fd], '\n') == NULL && bytes > 0)
 		bytes = read_from_content(fd, &stashes[fd], buffer);
-	free(buffer);
 	if (bytes == -1)
 		return (NULL);
 	if (ft_strlen(stashes[fd]) != 0)
