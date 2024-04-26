@@ -110,35 +110,35 @@ char	*get_next_line(int fd)
 		return (NULL);
 }
 
-int main (void)
-{
-	int fd_1 = open("text1.txt",0);
-	int fd_2 = open ("text2.txt",0);
+// int main (void)
+// {
+// 	int fd_1 = open("text1.txt",0);
+// 	int fd_2 = open ("text2.txt",0);
 
-	char *line1;
-	char *line2;
+// 	char *line1;
+// 	char *line2;
 
-	while(1)
-	{
-		line1 = get_next_line(fd_1);
-		if(!line1)
-		{
-			close(fd_1);
-		}
-		else
-			printf("file 1 : %s",line1);
+// 	while(1)
+// 	{
+// 		line1 = get_next_line(fd_1);
+// 		if(!line1)
+// 		{
+// 			close(fd_1);
+// 		}
+// 		else
+// 			printf("file 1 : %s",line1);
 
-		line2 = get_next_line(fd_2);
-		if(!line2)
-		{
-			close(fd_2);
-		}
-		else
-			printf("file 2 : %s",line2);
-		free(line1);
-        free(line2);
-		if(!line1 && !line2)
-			break;
-	}
-	return (0);
-}
+// 		line2 = get_next_line(fd_2);
+// 		if(!line2)
+// 		{
+// 			close(fd_2);
+// 		}
+// 		else
+// 			printf("file 2 : %s",line2);
+// 		free(line1);
+//         free(line2);
+// 		if(!line1 && !line2)
+// 			break;
+// 	}
+// 	return (0);
+// }

@@ -111,24 +111,24 @@ char	*get_next_line(int fd)
 		return (NULL);
 }
 
-int main()
-{
-  char *line;
+// int main()
+// {
+//   char *line;
 
-  int fd = open("text2.txt", 0);
-  if (fd == -1)
-  {
-    printf("Error opening file");
-    return (1);
-  }
-  line = get_next_line(fd);
-  while (line != NULL)
-  {
-	printf("%s",line);
-    free(line);
-    line = get_next_line(fd);
-  }
+//   int fd = open("text2.txt", 0);
+//   if (fd == -1)
+//   {
+//     printf("Error opening file");
+//     return (1);
+//   }
+//   line = get_next_line(fd);
+//   while (line != NULL)
+//   {
+// 	printf("%s",line);
+//     free(line);
+//     line = get_next_line(fd);
+//   }
 
-  close(fd);
-  return (0);
-}
+//   close(fd);
+//   return (0);
+// }
