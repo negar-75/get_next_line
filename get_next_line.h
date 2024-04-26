@@ -22,7 +22,6 @@
 #  define BUFFER_SIZE 10
 # endif
 
-void	ft_bzero(void *s, size_t n);
 size_t	ft_strlen(char *str);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strjoin(char *s1, char *s2);

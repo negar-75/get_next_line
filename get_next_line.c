@@ -33,7 +33,6 @@ static int	read_from_content(int fd, char **stash, char *buffer)
 		return (bytes);
 	buffer[bytes] = '\0';
 	tmp = ft_strjoin(*stash, buffer);
-	
 	if (*stash)
 		free(*stash);
 	*stash = tmp;
@@ -112,24 +111,24 @@ char	*get_next_line(int fd)
 		return (NULL);
 }
 
-// int main()
-// {
-//   char *line;
+int main()
+{
+  char *line;
 
-//   int fd = open("multiple_nl.txt", O_RDONLY);
-//   if (fd == -1)
-//   {
-//     perror("Error opening file");
-//     return (1);
-//   }
-//   line = get_next_line(fd);
-//   while (line != NULL)
-//   {
-// 	printf("%s",line);
-//     free(line);
-//     line = get_next_line(fd);
-//   }
+  int fd = open("text2.txt", 0);
+  if (fd == -1)
+  {
+    printf("Error opening file");
+    return (1);
+  }
+  line = get_next_line(fd);
+  while (line != NULL)
+  {
+	printf("%s",line);
+    free(line);
+    line = get_next_line(fd);
+  }
 
-//   close(fd);
-//   return (0);
-// }
+  close(fd);
+  return (0);
+}
